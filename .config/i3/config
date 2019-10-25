@@ -27,7 +27,7 @@ set $ws10 "10"
 set $term gnome-terminal
 
 # Font for window titles. Will also be used by the bar
-font pango:Open Sans Semibold 9
+font pango: sans-serif 9
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -70,9 +70,9 @@ bindsym $mod+t layout tabbed
 bindsym $mod+e layout toggle split
 
 # focus the parent container
-bindsym $mod+[ focus parent
+bindsym $mod+bracketleft focus parent
 # focus the child container
-bindsym $mod+] focus child
+bindsym $mod+bracketright focus child
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
