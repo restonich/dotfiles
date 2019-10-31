@@ -28,6 +28,8 @@ key[Right]="${terminfo[kcuf1]}"
 key[PageUp]="${terminfo[kpp]}"
 key[PageDown]="${terminfo[knp]}"
 key[ShiftTab]="${terminfo[kcbt]}"
+key[CtrlLeft]="${terminfo[kLFT5]}"
+key[CtrlRight]="${terminfo[kRIT5]}"
 
 # setup key accordingly
 [[ -n "${key[Home]}"      ]] && bindkey -- "${key[Home]}"      beginning-of-line
@@ -64,12 +66,17 @@ zle -N down-line-or-beginning-search
 [[ -n "${key[Up]}"   ]] && bindkey -- "${key[Up]}"   up-line-or-beginning-search
 [[ -n "${key[Down]}" ]] && bindkey -- "${key[Down]}" down-line-or-beginning-search
 
+[[ -n "${key[CtrlLeft]}"  ]] && bindkey -- "${key[CtrlLeft]}"  backward-word
+[[ -n "${key[CtrlRight]}" ]] && bindkey -- "${key[CtrlRight]}" forward-word
+
 # Aliases
 alias ls='ls -h --color=auto --sort=version --group-directories-first'
 alias la='ls -A'
+alias ll='ls -l'
 alias lal='ls -Al'
+alias lla='ls -Al'
 alias paci='sudo pacman -S --needed'
 alias pacr='sudo pacman -Rs'
-alias pacu='sudo pacman -Syu'
+alias pacu='sudo pacman -Suy'
 
 PROMPT="> "
