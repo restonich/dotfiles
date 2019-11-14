@@ -12,8 +12,8 @@ compinit
 zstyle ':completion:*' menu select
 
 # Keybindings
-## create a zkbd compatible hash;
-## to add other keys to this hash, see: man 5 terminfo
+## Create a zkbd compatible hash;
+## To add other keys to this hash, see: man 5 terminfo
 typeset -g -A key
 
 key[Home]="${terminfo[khome]}"
@@ -31,22 +31,29 @@ key[ShiftTab]="${terminfo[kcbt]}"
 key[CtrlLeft]="${terminfo[kLFT5]}"
 key[CtrlRight]="${terminfo[kRIT5]}"
 
-# setup key accordingly
+## Enable search with prefix by pressing up and down
+autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+
+# Setup keys accordingly
 [[ -n "${key[Home]}"      ]] && bindkey -- "${key[Home]}"      beginning-of-line
 [[ -n "${key[End]}"       ]] && bindkey -- "${key[End]}"       end-of-line
 [[ -n "${key[Insert]}"    ]] && bindkey -- "${key[Insert]}"    overwrite-mode
 [[ -n "${key[Backspace]}" ]] && bindkey -- "${key[Backspace]}" backward-delete-char
 [[ -n "${key[Delete]}"    ]] && bindkey -- "${key[Delete]}"    delete-char
-# [[ -n "${key[Up]}"        ]] && bindkey -- "${key[Up]}"        up-line-or-history
-# [[ -n "${key[Down]}"      ]] && bindkey -- "${key[Down]}"      down-line-or-history
 [[ -n "${key[Left]}"      ]] && bindkey -- "${key[Left]}"      backward-char
 [[ -n "${key[Right]}"     ]] && bindkey -- "${key[Right]}"     forward-char
 [[ -n "${key[PageUp]}"    ]] && bindkey -- "${key[PageUp]}"    beginning-of-buffer-or-history
 [[ -n "${key[PageDown]}"  ]] && bindkey -- "${key[PageDown]}"  end-of-buffer-or-history
 [[ -n "${key[ShiftTab]}"  ]] && bindkey -- "${key[ShiftTab]}"  reverse-menu-complete
+[[ -n "${key[CtrlLeft]}"  ]] && bindkey -- "${key[CtrlLeft]}"  backward-word
+[[ -n "${key[CtrlRight]}" ]] && bindkey -- "${key[CtrlRight]}" forward-word
+[[ -n "${key[Up]}"   	  ]] && bindkey -- "${key[Up]}"        up-line-or-beginning-search
+[[ -n "${key[Down]}" 	  ]] && bindkey -- "${key[Down]}"      down-line-or-beginning-search
 
-# Finally, make sure the terminal is in application mode, when zle is
-# active. Only then are the values from $terminfo valid.
+## Finally, make sure the terminal is in application mode, when zle is
+## active. Only then are the values from $terminfo valid.
 if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
 	autoload -Uz add-zle-hook-widget
 	function zle_application_mode_start {
@@ -59,24 +66,20 @@ if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
 	add-zle-hook-widget -Uz zle-line-finish zle_application_mode_stop
 fi
 
-autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
-zle -N up-line-or-beginning-search
-zle -N down-line-or-beginning-search
-
-[[ -n "${key[Up]}"   ]] && bindkey -- "${key[Up]}"   up-line-or-beginning-search
-[[ -n "${key[Down]}" ]] && bindkey -- "${key[Down]}" down-line-or-beginning-search
-
-[[ -n "${key[CtrlLeft]}"  ]] && bindkey -- "${key[CtrlLeft]}"  backward-word
-[[ -n "${key[CtrlRight]}" ]] && bindkey -- "${key[CtrlRight]}" forward-word
-
 # Aliases
 alias ls='ls -h --color=auto --sort=version --group-directories-first'
 alias la='ls -A'
 alias ll='ls -l'
 alias lal='ls -Al'
 alias lla='ls -Al'
-alias paci='sudo pacman -S --needed'
-alias pacr='sudo pacman -Rs'
-alias pacu='sudo pacman -Suy'
+
+alias cp='cp -vi'
+
+alias pacupd='sudo pacman -Suy'
+alias pacins='sudo pacman -S --needed'
+alias pacrem='sudo pacman -Rs'
+alias pacsrch='pacman -Ss'
+alias pacinfo='pacman -Si'
+alias pacfile='sudo pacman -Fy && pacman -F'
 
 PROMPT="> "
