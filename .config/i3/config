@@ -13,18 +13,35 @@
 ## Alt == Mod1, Win == Mod4
 set $mod Mod4
 ## Names for default workspaces
-set $ws1 "1: term"
-set $ws2 "2: www"
-set $ws3 "3: nvim"
-set $ws4 "4: ssh"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
+set $ws1  "1: term"
+set $ws2  "2: www"
+set $ws3  "3: nvim"
+set $ws4  "4: ssh"
+set $ws5  "5"
+set $ws6  "6"
+set $ws7  "7"
+set $ws8  "8"
+set $ws9  "9"
 set $ws10 "10"
 ## Applications
 set $term gnome-terminal
+## Colors
+set $bg0      "#282828"
+set $red1     "#cc241d"
+set $green2   "#98971a"
+set $yellow3  "#d79921"
+set $blue4    "#458588"
+set $purple5  "#b16286"
+set $aqua6    "#689d6a"
+set $gray7    "#a89984"
+set $gray8    "#928374"
+set $red9     "#fb4934"
+set $green10  "#b8bb26"
+set $yellow11 "#fabd2f"
+set $blue12   "#83a598"
+set $purple13 "#d3869b"
+set $aqua14   "#8ec07c"
+set $fg15     "#ebdbb2"
 
 # Font for window titles. Will also be used by the bar
 font pango: Open Sans SemiBold, sans-serif 9
@@ -132,8 +149,29 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
+# Colors
+## class                border  backgr. text    indicator 	child_border
+client.focused          $blue4 	$blue4 	$fg15 	$aqua6 		$blue4
+client.focused_inactive $gray8 	$gray8 	$bg0 	$gray7 		$gray8
+client.unfocused        $gray8 	$bg0 	$fg15 	$gray7 		$gray8
+client.urgent           $red1 	$red1 	$fg15 	$red9 		$red1
+client.placeholder      $bg0 	$bg0 	$fg15 	$bg0 		$bg0
+
+client.background       $bg0
+
 # Start i3bar
 bar {
+    colors {
+        background $bg0
+        statusline $fg15
+        separator  $gray8
+
+		## class 		   border 	bg 		text
+        focused_workspace  $blue4 	$blue4 	$fg15
+        active_workspace   $gray8 	$gray8 	$bg0
+        inactive_workspace $bg0 	$bg0 	$gray8
+        urgent_workspace   $red1 	$red1 	$fg15
+    }
 	position top
         status_command i3status
 }
@@ -145,7 +183,7 @@ bindsym $mod+Tab workspace next
 bindsym $mod+Shift+Tab workspace prev
 
 # Additional configuration
-default_border pixel 2
+default_border pixel 1
 ## Hide borders when only one window on workspace
 hide_edge_borders smart
 ## Switch to worspace $n with mod+$n then press mod+$n again to switch back
