@@ -1,2 +1,2 @@
-rofi.font: Open Sans Semibold, sans-serif 9
+rofi.font: Open Sans, sans-serif 9
 rofi.theme: /usr/share/rofi/themes/gruvbox-dark.rasi

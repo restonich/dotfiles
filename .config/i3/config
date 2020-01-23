@@ -13,10 +13,10 @@
 ## Alt == Mod1, Win == Mod4
 set $mod Mod4
 ## Names for default workspaces
-set $ws1  "1 term"
-set $ws2  "2 www"
-set $ws3  "3 nvim"
-set $ws4  "4 ssh"
+set $ws1  "1"
+set $ws2  "2"
+set $ws3  "3"
+set $ws4  "4"
 set $ws5  "5"
 set $ws6  "6"
 set $ws7  "7"
@@ -44,7 +44,7 @@ set $aqua14   "#8ec07c"
 set $fg15     "#ebdbb2"
 
 # Font for window titles. Will also be used by the bar
-font pango: Open Sans SemiBold, sans-serif 9
+font pango: Open Sans, sans-serif 9
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -192,7 +192,7 @@ focus_follows_mouse no
 
 # XDG Autostart
 exec --no-startup-id dex -a -e i3
-exec --no-startup-id vmhgfs-fuse -o auto_unmount,umask=0022,uid=1000,gid=1000 .host:/vm-shared /home/restonich/vm-shared
+exec --no-startup-id vmhgfs-fuse -o auto_unmount,umask=0022,uid=1000,gid=1000 .host:/vmware-shared /home/restonich/vmware-shared
 # Basic layout
 # exec --no-startup-id i3-msg "workspace $ws3; exec $term; workspace $ws2; exec $term; workspace $ws1; exec $term"
 exec --no-startup-id i3-msg "workspace $ws1; exec $term"

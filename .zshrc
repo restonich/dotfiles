@@ -73,7 +73,7 @@ alias ll='ls -l'
 alias lal='ls -Al'
 alias lla='ls -Al'
 
-alias cp='cp -vi'
+alias cp='cp -v'
 
 alias pacupd='sudo pacman -Suy'
 alias pacins='sudo pacman -S --needed'
