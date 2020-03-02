@@ -72,9 +72,11 @@ alias la='ls -A'
 alias ll='ls -l'
 alias lal='ls -Al'
 alias lla='ls -Al'
-
 alias cp='cp -v'
+alias grep='grep --color=auto'
 
+alias vi='nvim'
+alias vim='nvim'
 alias pacupd='sudo pacman -Suy'
 alias pacins='sudo pacman -S --needed'
 alias pacrem='sudo pacman -Rs'

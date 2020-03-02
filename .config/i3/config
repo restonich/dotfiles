@@ -12,6 +12,8 @@
 # Variables definition
 ## Alt == Mod1, Win == Mod4
 set $mod Mod4
+## Applications
+set $term gnome-terminal
 ## Names for default workspaces
 set $ws1  "1"
 set $ws2  "2"
@@ -23,8 +25,6 @@ set $ws7  "7"
 set $ws8  "8"
 set $ws9  "9"
 set $ws10 "10"
-## Applications
-set $term gnome-terminal
 ## Colors
 set $bg0      "#282828"
 set $red1     "#cc241d"
@@ -44,7 +44,7 @@ set $aqua14   "#8ec07c"
 set $fg15     "#ebdbb2"
 
 # Font for window titles. Will also be used by the bar
-font pango: Open Sans, sans-serif 9
+font pango:sans-serif, Open Sans 10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -59,9 +59,9 @@ bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
+bindsym $mod+Left  focus left
+bindsym $mod+Down  focus down
+bindsym $mod+Up    focus up
 bindsym $mod+Right focus right
 
 # move focused window
@@ -70,9 +70,9 @@ bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Left  move left
+bindsym $mod+Shift+Down  move down
+bindsym $mod+Shift+Up    move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal and vertical orientation
@@ -85,9 +85,8 @@ bindsym $mod+q kill
 # change container layout
 bindsym $mod+t layout toggle tabbed split
 
-# focus the parent container
-bindsym $mod+bracketleft focus parent
-# focus the child container
+# focus the parent/child container
+bindsym $mod+bracketleft  focus parent
 bindsym $mod+bracketright focus child
 
 # enter fullscreen mode for the focused container
@@ -136,10 +135,9 @@ mode "resize" {
         bindsym k resize shrink height 10 px or 10 ppt
         bindsym l resize grow width 10 px or 10 ppt
 
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Left  resize shrink width 10 px or 10 ppt
+        bindsym Down  resize grow height 10 px or 10 ppt
+        bindsym Up    resize shrink height 10 px or 10 ppt
         bindsym Right resize grow width 10 px or 10 ppt
 
         # back to normal: Enter or Escape or $mod+r
@@ -150,14 +148,13 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Colors
-## class                border  backgr. text    indicator 	child_border
-client.focused          $blue4 	$blue4 	$fg15 	$aqua6 		$blue4
-client.focused_inactive $gray8 	$gray8 	$bg0 	$gray7 		$gray8
-client.unfocused        $gray8 	$bg0 	$fg15 	$gray7 		$gray8
-client.urgent           $red1 	$red1 	$fg15 	$red9 		$red1
-client.placeholder      $bg0 	$bg0 	$fg15 	$bg0 		$bg0
-
-client.background       $bg0
+## class                 border  bg      text   indicator  child_border
+client.focused           $blue4  $blue4  $fg15  $aqua6     $blue4
+client.focused_inactive  $gray8  $gray8  $bg0   $gray7     $gray8
+client.unfocused         $gray8  $bg0    $fg15  $gray7     $gray8
+client.urgent            $red1   $red1   $fg15  $red9      $red1
+client.placeholder       $bg0    $bg0    $fg15  $bg0       $bg0
+client.background        $bg0
 
 # Start i3bar
 bar {
@@ -166,33 +163,41 @@ bar {
         statusline $fg15
         separator  $gray8
 
-		## class 		   border 	bg 		text
-        focused_workspace  $blue4 	$blue4 	$fg15
-        active_workspace   $gray8 	$gray8 	$bg0
-        inactive_workspace $bg0 	$bg0 	$gray8
-        urgent_workspace   $red1 	$red1 	$fg15
+        ## class            border  bg      text
+        focused_workspace   $blue4  $blue4  $fg15
+        active_workspace    $gray8  $gray8  $bg0
+        inactive_workspace  $bg0    $bg0    $gray8
+        urgent_workspace    $red1   $red1   $fg15
     }
-	position top
-        status_command i3status
+    position top
+    status_command i3status
 }
 
-# App key bindings
+# Additional bindings
 bindsym $mod+Return exec $term
-bindsym $mod+a exec rofi -show drun
-bindsym $mod+Tab workspace next
-bindsym $mod+Shift+Tab workspace prev
+bindsym $mod+a      exec rofi -show drun
+bindsym $mod+period workspace next
+bindsym $mod+comma  workspace prev
+bindsym $mod+b      exec --no-startup-id feh --bg-fill --randomize --no-fehbg ~/media/pics/bg &
 
 # Additional configuration
 default_border pixel 2
-## Hide borders when only one window on workspace
 hide_edge_borders smart
 ## Switch to worspace $n with mod+$n then press mod+$n again to switch back
 workspace_auto_back_and_forth yes
 focus_follows_mouse no
 
+# G A P S
+bindsym $mod+g gaps inner all toggle 10
+
 # XDG Autostart
 exec --no-startup-id dex -a -e i3
+exec --no-startup-id feh --bg-fill --randomize --no-fehbg ~/media/pics/bg &
+# VMware shared folder
 exec --no-startup-id vmhgfs-fuse -o auto_unmount,umask=0022,uid=1000,gid=1000 .host:/vmware-shared /home/restonich/vmware-shared
-# Basic layout
+
+# Startup layout
 # exec --no-startup-id i3-msg "workspace $ws3; exec $term; workspace $ws2; exec $term; workspace $ws1; exec $term"
+exec --no-startup-id i3-msg "gaps inner all toggle 10"
 exec --no-startup-id i3-msg "workspace $ws1; exec $term"
+
