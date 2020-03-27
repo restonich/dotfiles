@@ -84,4 +84,5 @@ alias pacsrch='pacman -Ss'
 alias pacinfo='pacman -Si'
 alias pacfile='sudo pacman -Fy && pacman -F'
 
-PROMPT="> "
+PROMPT='[%B%F{blue}%1d%f%b]%(!.%F{red}#%f.%F{green}$%f) '
+
