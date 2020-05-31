@@ -3,7 +3,7 @@ HISTSIZE=1000
 SAVEHIST=1000
 setopt appendhistory
 unsetopt beep
-bindkey -v
+bindkey -e
 
 # Completion
 zstyle :compinstall filename '/home/restonich/.zshrc'
@@ -84,5 +84,5 @@ alias pacsrch='pacman -Ss'
 alias pacinfo='pacman -Si'
 alias pacfile='sudo pacman -Fy && pacman -F'
 
-PROMPT='[%B%F{blue}%1d%f%b]%(!.%F{red}#%f.%F{green}$%f) '
+PROMPT='%B[%F{blue}%1d%f]%(!.%F{red}#%f.%F{green}$%f)%b '
 
