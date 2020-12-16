@@ -12,5 +12,3 @@ set softtabstop=0
 set clipboard=unnamedplus
 
 set mouse=a
-
-set background=dark
