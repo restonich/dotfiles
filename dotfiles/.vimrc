@@ -9,6 +9,10 @@ set tabstop=8
 set shiftwidth=8
 set softtabstop=0
 
-set clipboard=unnamedplus
+" Works bad for mintty
+"set clipboard=unnamedplus
 
 set mouse=a
+
+set background=dark
+
