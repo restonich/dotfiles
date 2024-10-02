@@ -1,0 +1,26 @@
+import = [
+#    "~/AppData/Roaming/alacritty/dracula.toml"
+#    "~/AppData/Roaming/alacritty/nord.toml"
+    "~/AppData/Roaming/alacritty/gruvbox_dark.toml"
+]
+
+working_directory = "C:/Users/mkov"
+
+[window]
+    startup_mode = "Maximized"
+    padding = { x = 5, y = 2 }
+    dynamic_padding = true
+
+[font]
+    normal = { family = "Iosevka", style = "Regular" }
+    size = 13
+    offset = { x = 0, y = 1 }
+
+[selection]
+    save_to_clipboard = true
+
+[cursor]
+    style.blinking = "On"
+
+[env]
+    TERM = "xterm-256color"
